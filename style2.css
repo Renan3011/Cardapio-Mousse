@@ -52,55 +52,6 @@ nav a:hover{
     background-color: purple;
 }
 
-main{
-    width: 80%;
-    margin: 2rem auto;
-}
-
-.categoria{
-    margin-bottom: 2rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.categoria h1{
-    text-align: center;
-    width: 100%;
-    margin-bottom: 2rem;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.produto{
-    background-color: wheat;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;  
-    align-items: center;
-    text-align: center;
-    width: 250px;
-    border-radius: 10px;
-}
-
-.produto img{
-    height: 15rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    align-items: center;
-    
-}
-
-.escolher{
-    background-color: bisque;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.escolher:hover{
-    background-color: white;
-}
-
 .contato{
     color: #e9ecef;
     text-decoration: none;
@@ -118,4 +69,9 @@ main{
 
 .contato:hover{
     background-color: purple;
+}
+
+main{
+    width: 80%;
+    margin: 2rem auto;
 }
