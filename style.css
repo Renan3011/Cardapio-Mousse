@@ -147,3 +147,10 @@ main{
     background-color: purple;
 }
 
+@media (max-width: 600px){
+
+    .banner h1{
+        font-size: 1.8rem;
+    }
+
+}

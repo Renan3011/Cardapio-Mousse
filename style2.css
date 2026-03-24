@@ -30,8 +30,7 @@ header{
 }
 
 .banner h1{
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
 }
 
 .banner h3{
@@ -102,4 +101,12 @@ main{
 
 .btn-instagram:hover {
     transform: scale(1.05);
+}
+
+@media (max-width: 600px){
+
+    .banner h1{
+        font-size: 1.8rem;
+    }
+
 }
