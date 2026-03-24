@@ -80,21 +80,24 @@ main{
 /* SOBRE NÓS */
 
 .sobrenos{
-    padding: 10px;
+    max-width: 600px;
+    text-align: left;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 2rem;
-    margin: 0%;
+    font-size: 1.5rem;
+    margin: 0 auto;
 }
 
 .sobrenos img{
     width: 300px;
+    max-width: 600px;
     border-radius: 10px;
-    margin-left: 0%;
+    margin: 0 auto;
 }
 
 .ns{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2rem;
+    font-weight: bold;
     margin: 0%;
 }
 
@@ -104,7 +107,57 @@ main{
     text-align: center;
 }
 
+.tudonovo{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+}
 
+.noinicio{
+    text-align: left;
+    font-size: 1.5rem;
+    max-width: 600PX;
+    margin: 0 auto;
+}
 
+.mousse{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: left;
+}
 
+.eali{
+    text-align: left;
+    font-size: 1.5rem;
+    max-width: 600PX;
+    margin: 0 auto;
+}
 
+.noinicio img{
+     width: 300px;
+    max-width: 600px;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+.palavrachocante{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.nomeiodasvendas{
+    text-align: left;
+    font-size: 1.5rem;
+    max-width: 600PX;
+    margin: 0 auto;
+}
+
+.Deusrespondeu{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+}
