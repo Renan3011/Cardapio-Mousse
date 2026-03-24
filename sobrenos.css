@@ -88,7 +88,7 @@ main{
 }
 
 .sobrenos img{
-    width: 300px;
+    width: 250px;
     max-width: 600px;
     border-radius: 10px;
     margin: 0 auto;
@@ -109,7 +109,7 @@ main{
 }
 
 .tudonovo{
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     text-align: center;
     margin: 20px 0;
@@ -117,7 +117,7 @@ main{
 
 .noinicio{
     text-align: left;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     max-width: 600PX;
     margin: 0 auto;
 }
@@ -130,20 +130,19 @@ main{
 
 .eali{
     text-align: left;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     max-width: 600PX;
     margin: 0 auto;
 }
 
 .noinicio img{
-     width: 300px;
-    max-width: 600px;
+    width: 250px;
     border-radius: 10px;
     margin: 0 auto;
 }
 
 .palavrachocante{
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
     text-align: center;
     margin: 20px 0;
@@ -151,13 +150,13 @@ main{
 
 .nomeiodasvendas{
     text-align: left;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     max-width: 600PX;
     margin: 0 auto;
 }
 
 .Deusrespondeu{
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: bold;
     text-align: center;
     margin: 20px 0;
