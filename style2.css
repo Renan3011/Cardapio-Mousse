@@ -2,7 +2,7 @@ body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: purple, blue;
+    background-image: linear-gradient(to right, #a47dab);
 }
 
 header{
@@ -82,8 +82,9 @@ main{
     text-align: center;
     align-items: center;
     padding: 40px;
-    background: wheat;
+    background-color: rgba(0, 0, 0, 0.7);
     border-radius: 20px;
+    color: #a47dab;
     box-shadow: 0px 20px 20px rgba(1,1,1,1); 
 }
 
