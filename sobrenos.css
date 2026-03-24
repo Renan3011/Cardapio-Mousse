@@ -75,3 +75,38 @@ main{
     width: 80%;
     margin: 2rem auto;
 }
+
+
+/* SOBRE NÓS */
+
+.sobrenos{
+    padding: 10px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2rem;
+    margin: 0%;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.sobrenos img{
+    width: 600px;
+    border-radius: 10px;
+    margin-left: 0%;
+    
+}
+
+.ns{
+    font-family: cursive;
+    font-size: 2rem;
+    margin: 0%;
+}
+
+.historia{
+    margin: 50px;
+}
+
+
+
+
+

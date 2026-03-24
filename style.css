@@ -72,6 +72,27 @@ main{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.produto-limao{
+     background-color: wheat;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;  
+    align-items: center;
+    text-align: center;
+    width: 250px;
+    border-radius: 10px;
+}
+
+
+
+.img-limao{
+     height: 15rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+
+
 .produto{
     background-color: wheat;
     padding: 1rem;
@@ -119,3 +140,4 @@ main{
 .contato:hover{
     background-color: purple;
 }
+
