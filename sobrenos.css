@@ -91,6 +91,7 @@ main{
     max-width: 250px;
     border-radius: 10px;
     margin: 0 auto;
+    display: flex;
 }
 
 .ns{
@@ -126,6 +127,7 @@ main{
     max-width: 250px;
     border-radius: 10px;
     margin: 0 auto;
+    display: flex;
 }
 
 .mousse{
@@ -203,6 +205,7 @@ main{
     max-width: 250px;
     border-radius: 10px;
     margin: 0 auto;
+    display: flex;
 }
 
 @media (max-width: 600px){
