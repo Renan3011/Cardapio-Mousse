@@ -154,8 +154,11 @@ main{
 
 #encomenda{
     background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    color: #a47dab;
     padding: 15px;
     border-radius: 8px;
+    font-weight: bold;
 }
 
 #lista-encomenda{
@@ -170,6 +173,7 @@ main{
     padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 #finalizar-encomenda:hover{
@@ -188,7 +192,17 @@ main{
     font-weight: bold;
 }
 
-@media (min-width: 768px;){
+@media (max-width: 600px){
+
+    main{
+        width: 60%;
+    }
+
+.categoria{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px 1fr));
+    gap: 1rem;
+}
 
     .banner h1{
         font-size: 1.8rem;
