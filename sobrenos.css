@@ -170,6 +170,41 @@ main{
     padding: 2rem;
 }
 
+.desdeentao{
+    text-align: left;
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.umasocarne{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.renanjulia{
+    text-align: left;
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.renan{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.renanjulia img{
+    width: 100%;
+    max-width: 250px;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
 @media (max-width: 600px){
 
     .texto{
