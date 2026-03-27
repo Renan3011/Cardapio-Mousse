@@ -2,7 +2,7 @@ body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: linear-gradient(to right, #a47dab);
+    background-color: #14002B;
 }
 
 header{
@@ -13,7 +13,7 @@ header{
 }
 
 .banner{
-    background-color: #240046   ;
+    background-color: #14002b;
     background-size: cover;
     background-position: center ;
     background-repeat: no-repeat;
@@ -22,7 +22,7 @@ header{
     align-items: center;
     justify-content: center;
     text-align: center;
-    text-shadow: 2px 2px 4px rebeccapurple;
+    text-shadow: 2px 2px 4px black;
 }
 
 .banner-content{
@@ -33,18 +33,24 @@ header{
     font-size: 2rem;
 }
 
-.banner h3{
+.banner h3{             
     font-size: 1rem;
     margin-bottom: 1rem;
 }
 
 nav a{
-    color: #e9ecef;
+    color: #14002B;
     text-decoration: none;
+    border-radius: 10px;
+    cursor: pointer;
     margin: 0.1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.4rem;
     border-radius: 5px;
-    background-color:#14002B;
+    background-color:#f0c08a;
+    border: none;
+    text-shadow: 2px 2px 4px rebeccapurple;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;    
 }
 
 nav a:hover{
@@ -52,14 +58,14 @@ nav a:hover{
 }
 
 .contato{
-    color: #e9ecef;
+    color: #14002B;
     text-decoration: none;
     border-radius: 10px;
     cursor: pointer;
     margin: 0.1rem;
     padding: 0.5rem 0.4rem;
     border-radius: 5px;
-    background-color:#14002B;
+    background-color:#f0c08a;
     border: none;
     text-shadow: 2px 2px 4px rebeccapurple;
     font-family: Arial, Helvetica, sans-serif;
@@ -81,7 +87,7 @@ main{
     text-align: center;
     align-items: center;
     padding: 40px;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #f0c08a;
     border-radius: 20px;
     color: #a47dab;
     box-shadow: 0px 20px 20px rgba(1,1,1,1); 

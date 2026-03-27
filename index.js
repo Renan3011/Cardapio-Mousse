@@ -9,15 +9,21 @@ const listaEncomenda = document.getElementById ('lista-Encomenda');
 //seleciona o elemento que exibira o valor total da encomenda
 const totalElemento = document.getElementById('total');
 
+const descontoElemento = document.getElementById("desconto")
+
 //cria a variavel que armazena o valor total da encomenda
 let total = 0;
-
+let quantidade = 0;
+let desconto = 0;
 
 //percorre todos os botoes com class "adicionar"
 //e adiciona um evento de click em cada um deles
 
 botoesEscolher.forEach((botao) => {
     botao.addEventListener("click", () =>{
+        
+        descontoElemento.textContent =  `Desconto: R$ ${desconto.toFixed(2)}`;
+
         //obtem o elemento pai do botao (card do produto)
         const produto = botao.parentElement;
 
@@ -35,9 +41,31 @@ botoesEscolher.forEach((botao) => {
         listaEncomenda.appendChild(itemEncomenda);
 
         //atualiza o total da compra somando o preço do novo item
-        total += preco;
+        quantidade ++;
+
+        // total sem desconto
+        let totalSemDesconto = quantidade * 15;
+
+        //calcula desconto (a cada 2 itens ganha 5)
+        desconto = Math.floor(quantidade / 2) * 5;
+
+        //total final
+        total = totalSemDesconto - desconto;
+
+
 
         //atualiza o texto do elemento que exibe o total da encomenda
         totalElemento.textContent = `Total: R$ ${total.toFixed(2)}`;
     });
-}); ;
+}); 
+
+const botaoFinalizarEncomenda = document.getElementById("Finalizar-Encomenda");
+
+botaoFinalizarEncomenda.addEventListener("click", () => {
+    alert("Encomenda Finalizada" + totalElemento.textContent);
+    listaEncomenda.innerHTML = "";
+    total = 0;
+    quantidade = 0;
+    totalElemento.textContent = `Total: R$ ${total.toFixed(2).replace(".", ",")}`; 
+});
+
