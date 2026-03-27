@@ -3,7 +3,7 @@ body{
     margin: 0;
     padding: 0;
     background-image: radial-gradient(circle at top, #4c1d95 0%, #2b0a3d 55%, #14002b 100%);
-}
+}   
 
 header{
     background: black;
@@ -22,7 +22,7 @@ header{
     align-items: center;
     justify-content: center;
     text-align: center;
-    text-shadow: 2px 2px 4px black;
+    text-shadow: 2px 2px 4px rebeccapurple;
 }
 
 .banner-content{
@@ -58,7 +58,7 @@ nav a{
 }
 
 nav a:hover{
-    background-color: purple;
+    background-color: beige;
 }
 
 main{
@@ -137,7 +137,7 @@ main{
 }
 
 .contato:hover{
-    background-color: purple;
+    background-color: beige;
 }
 
 .preco{
@@ -176,7 +176,9 @@ main{
 
 .footer{
     text-align: center;
-    background-color: #f0c08a;
+    background-color: #f3e5d0;
+    border: 2px solid #d4a373;
+    border-radius: 10px;
     color: #14002B;
     font-weight: bold;
 }
