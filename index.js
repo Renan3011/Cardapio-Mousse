@@ -46,7 +46,7 @@ botoesEscolher.forEach((botao) => {
         // atualiza tela
         totalElemento.textContent = `Total: R$ ${totalSemDesconto.toFixed(2)}`;
         descontoElemento.textContent = `Desconto: R$ ${desconto.toFixed(2)}`;
-        totalFinalElemento.textContent = `Agora: R$ ${totalFinal.toFixed(2)}`;
+        totalFinalElemento.textContent = `Total com desconto: R$ ${totalFinal.toFixed(2)}`;
     });
 });
 
@@ -62,5 +62,5 @@ botaoFinalizarEncomenda.addEventListener("click", () => {
 
     totalElemento.textContent = "Total: R$ 0,00";
     descontoElemento.textContent = "Desconto: R$ 0,00";
-    totalFinalElemento.textContent = "Agora: R$ 0,00";
+    totalFinalElemento.textContent = "Total com desconto: R$ 0,00";
 });             
