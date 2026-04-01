@@ -1,109 +1,173 @@
-const botoesEscolher = document.querySelectorAll(".escolher");
-const listaEncomenda = document.getElementById("lista-Encomenda");
-const totalElemento = document.getElementById("total");
-const descontoElemento = document.getElementById("desconto");
-const totalFinalElemento = document.getElementById("total-final");
+document.addEventListener("DOMContentLoaded", () => {
+  const botoesEscolher = document.querySelectorAll(".escolher");
+  const listaEncomenda = document.getElementById("lista-Encomenda");
+  const totalElemento = document.getElementById("total");
+  const descontoElemento = document.getElementById("desconto");
+  const totalFinalElemento = document.getElementById("total-final");
+  const botaoFinalizar = document.getElementById("FinalizarEncomenda");
 
-const toastCarrinho = document.getElementById("toast-carrinho");
-const toastMensagem = document.getElementById("toast-mensagem");
-const btnIrCarrinho = document.getElementById("btn-ir-carrinho");
+  const toastCarrinho = document.getElementById("toast-carrinho");
+  const toastMensagem = document.getElementById("toast-mensagem");
+  const btnIrCarrinho = document.getElementById("btn-ir-carrinho");
 
-let quantidade = 0;
-let desconto = 0;
-let totalSemDesconto = 0;
-let timeoutToast;
+  let timeoutToast;
+  let carrinho = [];
 
-function mostrarToastCarrinho(nomeProduto) {
-  toastMensagem.textContent = `${nomeProduto} foi adicionado ao carrinho!`;
+  function mostrarToastCarrinho(nomeProduto) {
+    if (!toastCarrinho || !toastMensagem) return;
 
-  toastCarrinho.classList.add("mostrar");
+    toastMensagem.textContent = `${nomeProduto} foi adicionado ao carrinho!`;
+    toastCarrinho.classList.add("mostrar");
 
-  clearTimeout(timeoutToast);
+    clearTimeout(timeoutToast);
 
-  timeoutToast = setTimeout(() => {
-    toastCarrinho.classList.remove("mostrar");
-  }, 2500);
-}
+    timeoutToast = setTimeout(() => {
+      toastCarrinho.classList.remove("mostrar");
+    }, 2500);
+  }
 
-if (btnIrCarrinho) {
-  btnIrCarrinho.addEventListener("click", () => {
-    const secaoCarrinho = document.getElementById("encomenda");
+  function atualizarCarrinhoNaTela() {
+    listaEncomenda.innerHTML = "";
 
-    if (secaoCarrinho) {
-      secaoCarrinho.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
+    let totalSemDesconto = 0;
 
-    toastCarrinho.classList.remove("mostrar");
-  });
-}
+    carrinho.forEach((item, index) => {
+      totalSemDesconto += item.preco;
 
-botoesEscolher.forEach((botao) => {
-  botao.addEventListener("click", () => {
-    const produto = botao.closest(".produto");
+      const li = document.createElement("li");
+      li.classList.add("item-carrinho");
 
-    if (!produto) {
-      console.error("Não encontrei .produto");
-      return;
-    }
+      li.innerHTML = `
+        <span>${item.nome} - R$ ${item.preco.toFixed(2).replace(".", ",")}</span>
+        <button class="remover" data-index="${index}">❌</button>
+      `;
 
-    const titulo = produto.querySelector("h2");
-    const precoSpan = produto.querySelector(".preco");
+      listaEncomenda.appendChild(li);
+    });
 
-    if (!titulo || !precoSpan) {
-      console.error("Não encontrei h2 ou .preco");
-      return;
-    }
-
-    const nomeProduto = titulo.textContent.trim();
-    const precoTexto = precoSpan.textContent
-      .replace("R$", "")
-      .replace(",", ".")
-      .trim();
-
-    const preco = parseFloat(precoTexto);
-
-    if (isNaN(preco)) {
-      console.error("Preço inválido:", precoTexto);
-      return;
-    }
-
-    const itemEncomenda = document.createElement("li");
-    itemEncomenda.textContent = `${nomeProduto} - R$ ${preco.toFixed(2).replace(".", ",")}`;
-    listaEncomenda.appendChild(itemEncomenda);
-
-    quantidade++;
-    totalSemDesconto += preco;
-
-    desconto = Math.floor(quantidade / 2) * 5;
+    const quantidade = carrinho.length;
+    const desconto = Math.floor(quantidade / 2) * 5;
     const totalFinal = totalSemDesconto - desconto;
 
     totalElemento.textContent = `Total: R$ ${totalSemDesconto.toFixed(2).replace(".", ",")}`;
     descontoElemento.textContent = `Desconto: R$ ${desconto.toFixed(2).replace(".", ",")}`;
     totalFinalElemento.textContent = `Total com desconto: R$ ${totalFinal.toFixed(2).replace(".", ",")}`;
-
-    mostrarToastCarrinho(nomeProduto);
-  });
-});
-
-function irParaFinalizacao() {
-  const itens = listaEncomenda.querySelectorAll("li");
-
-  if (itens.length === 0) {
-    alert("Adicione pelo menos 1 item antes de finalizar.");
-    return;
   }
 
-  const dadosPedido = {
-    itens: listaEncomenda.innerHTML,
-    total: totalElemento.textContent,
-    desconto: descontoElemento.textContent,
-    totalFinal: totalFinalElemento.textContent
-  };
+  function salvarPedidoNoLocalStorage() {
+    const quantidade = carrinho.length;
+    const totalSemDesconto = carrinho.reduce((soma, item) => soma + item.preco, 0);
+    const desconto = Math.floor(quantidade / 2) * 5;
+    const totalFinal = totalSemDesconto - desconto;
 
-  localStorage.setItem("pedido", JSON.stringify(dadosPedido));
+    const pedido = {
+      itens: carrinho,
+      total: totalSemDesconto,
+      desconto: desconto,
+      totalFinal: totalFinal
+    };
 
-  window.location.href = "Finalizar.html";
-}
+    localStorage.setItem("pedido", JSON.stringify(pedido));
+  }
+
+  function carregarCarrinhoSalvo() {
+    const pedidoSalvo = localStorage.getItem("pedido");
+
+    if (pedidoSalvo) {
+      try {
+        const pedidoConvertido = JSON.parse(pedidoSalvo);
+
+        if (pedidoConvertido.itens && Array.isArray(pedidoConvertido.itens)) {
+          carrinho = pedidoConvertido.itens;
+          atualizarCarrinhoNaTela();
+        }
+      } catch (erro) {
+        console.error("Erro ao carregar carrinho salvo:", erro);
+        localStorage.removeItem("pedido");
+      }
+    }
+  }
+
+  botoesEscolher.forEach((botao) => {
+    botao.addEventListener("click", () => {
+      const produto = botao.closest(".produto");
+
+      if (!produto) {
+        console.error("Não encontrei o elemento .produto");
+        return;
+      }
+
+      const titulo = produto.querySelector("h2");
+      const precoSpan = produto.querySelector(".preco");
+
+      if (!titulo || !precoSpan) {
+        console.error("Não encontrei h2 ou .preco dentro do produto");
+        return;
+      }
+
+      const nomeProduto = titulo.textContent.trim();
+      const precoTexto = precoSpan.textContent
+        .replace("R$", "")
+        .replace(",", ".")
+        .trim();
+
+      const preco = parseFloat(precoTexto);
+
+      if (isNaN(preco)) {
+        console.error("Preço inválido:", precoTexto);
+        return;
+      }
+
+      carrinho.push({
+        nome: nomeProduto,
+        preco: preco
+      });
+
+      atualizarCarrinhoNaTela();
+      salvarPedidoNoLocalStorage();
+      mostrarToastCarrinho(nomeProduto);
+    });
+  });
+
+  listaEncomenda.addEventListener("click", (e) => {
+    if (e.target.classList.contains("remover")) {
+      const index = Number(e.target.getAttribute("data-index"));
+
+      carrinho.splice(index, 1);
+
+      atualizarCarrinhoNaTela();
+      salvarPedidoNoLocalStorage();
+    }
+  });
+
+  if (btnIrCarrinho) {
+    btnIrCarrinho.addEventListener("click", () => {
+      const secaoCarrinho = document.getElementById("encomenda");
+
+      if (secaoCarrinho) {
+        secaoCarrinho.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      if (toastCarrinho) {
+        toastCarrinho.classList.remove("mostrar");
+      }
+    });
+  }
+
+  if (botaoFinalizar) {
+    botaoFinalizar.addEventListener("click", () => {
+      if (carrinho.length === 0) {
+        alert("Adicione pelo menos 1 item antes de finalizar.");
+        return;
+      }
+
+      salvarPedidoNoLocalStorage();
+      window.location.href = "Finalizar.html";
+    });
+  }
+
+  carregarCarrinhoSalvo();
+});

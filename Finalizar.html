@@ -10,20 +10,17 @@
 
   <section id="dados-cliente">
     <div class="card-finalizacao">
-
       <h1>Finalizar Encomenda</h1>
 
       <div class="resumo-pedido">
         <h2>Resumo do pedido</h2>
-
         <ul id="resumo-lista"></ul>
-
         <p id="resumo-total">Total: R$ 0,00</p>
         <p id="resumo-desconto">Desconto: R$ 0,00</p>
         <p id="resumo-final">Total com desconto: R$ 0,00</p>
       </div>
 
-      <form class="entradas">
+      <form class="entradas" id="form-finalizacao" onsubmit="return false;">
         <input type="text" id="nome" placeholder="Digite seu nome">
         <input type="email" id="email" placeholder="Digite seu email">
         <input type="text" id="telefone" placeholder="Digite seu telefone">
@@ -42,22 +39,12 @@
 
         <textarea id="observacoes" placeholder="Observações"></textarea>
 
-        <button type="button">Concluir Pedido</button>
+        <button type="button" id="btn-concluir">Concluir Pedido</button>
       </form>
-
     </div>
   </section>
 
-  <script>
-    const pedido = JSON.parse(localStorage.getItem("pedido"));
-
-    if (pedido) {
-      document.getElementById("resumo-lista").innerHTML = pedido.itens;
-      document.getElementById("resumo-total").textContent = pedido.total;
-      document.getElementById("resumo-desconto").textContent = pedido.desconto;
-      document.getElementById("resumo-final").textContent = pedido.totalFinal;
-    }
-  </script>
-
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="Finalizar.js"></script>
 </body>
 </html>
