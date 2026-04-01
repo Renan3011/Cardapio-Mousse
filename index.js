@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (botaoFinalizar) {
     botaoFinalizar.addEventListener("click", () => {
       if (carrinho.length === 0) {
-        alert("Adicione pelo menos 1 item antes de finalizar.");
+        mostrarPopup("Adicione pelo menos 1 item antes de finalizar.");
         return;
       }
 

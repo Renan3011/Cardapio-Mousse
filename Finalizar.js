@@ -5,6 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const resumoFinal = document.getElementById("resumo-final");
   const btnConcluir = document.getElementById("btn-concluir");
 
+  const popupMensagem = document.getElementById("popup-mensagem");
+  const popupTexto = document.getElementById("popup-texto");
+  const popupFechar = document.getElementById("popup-fechar");
+
   const nome = document.getElementById("nome");
   const email = document.getElementById("email");
   const telefone = document.getElementById("telefone");
@@ -12,6 +16,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const dataEntrega = document.getElementById("data-entrega");
   const pagamento = document.getElementById("pagamento");
   const observacoes = document.getElementById("observacoes");
+
+  function mostrarPopup(mensagem, callback = null) {
+    popupTexto.textContent = mensagem;
+    popupMensagem.classList.add("mostrar");
+
+    popupFechar.onclick = () => {
+      popupMensagem.classList.remove("mostrar");
+
+      if (callback) {
+        callback();
+      }
+    };
+  }
 
   const pedidoSalvo = localStorage.getItem("pedido");
 
@@ -56,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       dataEntrega.value.trim() === "" ||
       pagamento.value.trim() === ""
     ) {
-      alert("Preencha todos os campos obrigatórios antes de concluir.");
+      mostrarPopup("Preencha todos os campos obrigatórios antes de concluir.");
       return;
     }
 
@@ -78,13 +95,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("Pedido concluído:", pedidoCompleto);
 
-    alert("Pedido concluído com sucesso! 🎉");
-
-    // Se quiser limpar o carrinho após concluir:
-    localStorage.removeItem("pedido");
-    
-
-    // Redireciona de volta para a página principal
-    window.location.href = "index.html";
+    mostrarPopup("Pedido concluído com sucesso! 🎉", () => {
+      localStorage.removeItem("pedido");
+      window.location.href = "index.html";
+    });
   });
 });
