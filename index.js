@@ -4,9 +4,41 @@ const totalElemento = document.getElementById("total");
 const descontoElemento = document.getElementById("desconto");
 const totalFinalElemento = document.getElementById("total-final");
 
+const toastCarrinho = document.getElementById("toast-carrinho");
+const toastMensagem = document.getElementById("toast-mensagem");
+const btnIrCarrinho = document.getElementById("btn-ir-carrinho");
+
 let quantidade = 0;
 let desconto = 0;
 let totalSemDesconto = 0;
+let timeoutToast;
+
+function mostrarToastCarrinho(nomeProduto) {
+  toastMensagem.textContent = `${nomeProduto} foi adicionado ao carrinho!`;
+
+  toastCarrinho.classList.add("mostrar");
+
+  clearTimeout(timeoutToast);
+
+  timeoutToast = setTimeout(() => {
+    toastCarrinho.classList.remove("mostrar");
+  }, 2500);
+}
+
+if (btnIrCarrinho) {
+  btnIrCarrinho.addEventListener("click", () => {
+    const secaoCarrinho = document.getElementById("encomenda");
+
+    if (secaoCarrinho) {
+      secaoCarrinho.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    toastCarrinho.classList.remove("mostrar");
+  });
+}
 
 botoesEscolher.forEach((botao) => {
   botao.addEventListener("click", () => {
@@ -51,27 +83,10 @@ botoesEscolher.forEach((botao) => {
     totalElemento.textContent = `Total: R$ ${totalSemDesconto.toFixed(2).replace(".", ",")}`;
     descontoElemento.textContent = `Desconto: R$ ${desconto.toFixed(2).replace(".", ",")}`;
     totalFinalElemento.textContent = `Total com desconto: R$ ${totalFinal.toFixed(2).replace(".", ",")}`;
+
+    mostrarToastCarrinho(nomeProduto);
   });
 });
-
-function FinalizarEncomenda() {
-  const itens = listaEncomenda.querySelectorAll("li");
-
-  if (itens.length === 0) {
-    alert("Adicione pelo menos 1 item antes de finalizar.");
-    return;
-  }
-    alert("Encomenda finalizada com sucesso!");
-
-  listaEncomenda.innerHTML = "";
-  quantidade = 0;
-  desconto = 0;
-  totalSemDesconto = 0;
-
-  totalElemento.textContent = "Total: R$ 0,00";
-  descontoElemento.textContent = "Desconto: R$ 0,00";
-  totalFinalElemento.textContent = "Total com desconto: R$ 0,00";
-};
 
 function irParaFinalizacao() {
   const itens = listaEncomenda.querySelectorAll("li");
