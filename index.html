@@ -108,13 +108,15 @@
     </section>
 
         <section id="encomenda">
+
+
         <h2>Encomenda</h2>
         <ul id="lista-Encomenda">
         </ul>
         <p id="total">Total: R$0,00</p>
         <p id="desconto">Desconto: R$0,00</p>
         <p id="total-final">Total com desconto: R$0,00</p>
-        <button class="Finalizar-Encomenda" id="Finalizar-Encomenda">Finalizar Encomenda</button>
+        <button onclick="irParaFinalizacao()" class="Finalizar-Encomenda" id="FinalizarEncomenda">Finalizar Encomenda</button>
         
         </section>
    </main>
@@ -125,6 +127,7 @@
 
    </footer>
  
-    <script src="index.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+   <script src="index.js"></script>
 </body>
 </html>

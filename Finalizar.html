@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizar Encomenda</title>
+  <link rel="stylesheet" href="Finalizar.css">
+</head>
+<body>
+
+  <section id="dados-cliente">
+    <div class="card-finalizacao">
+
+      <h1>Finalizar Encomenda</h1>
+
+      <div class="resumo-pedido">
+        <h2>Resumo do pedido</h2>
+
+        <ul id="resumo-lista"></ul>
+
+        <p id="resumo-total">Total: R$ 0,00</p>
+        <p id="resumo-desconto">Desconto: R$ 0,00</p>
+        <p id="resumo-final">Total com desconto: R$ 0,00</p>
+      </div>
+
+      <form class="entradas">
+        <input type="text" id="nome" placeholder="Digite seu nome">
+        <input type="email" id="email" placeholder="Digite seu email">
+        <input type="text" id="telefone" placeholder="Digite seu telefone">
+        <input type="text" id="endereco" placeholder="Digite seu endereço">
+
+        <label for="data-entrega">Data da entrega</label>
+        <input type="datetime-local" id="data-entrega">
+
+        <label for="pagamento">Forma de pagamento</label>
+        <select id="pagamento">
+          <option value="">Selecione</option>
+          <option value="pix">Pix</option>
+          <option value="dinheiro">Dinheiro</option>
+          <option value="cartao">Cartão</option>
+        </select>
+
+        <textarea id="observacoes" placeholder="Observações"></textarea>
+
+        <button type="button">Concluir Pedido</button>
+      </form>
+
+    </div>
+  </section>
+
+  <script>
+    const pedido = JSON.parse(localStorage.getItem("pedido"));
+
+    if (pedido) {
+      document.getElementById("resumo-lista").innerHTML = pedido.itens;
+      document.getElementById("resumo-total").textContent = pedido.total;
+      document.getElementById("resumo-desconto").textContent = pedido.desconto;
+      document.getElementById("resumo-final").textContent = pedido.totalFinal;
+    }
+  </script>
+
+</body>
+</html>

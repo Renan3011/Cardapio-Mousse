@@ -1,66 +1,94 @@
-// seleciona todos os botoes
-const botoesEscolher = document.querySelectorAll('.escolher');
+const botoesEscolher = document.querySelectorAll(".escolher");
+const listaEncomenda = document.getElementById("lista-Encomenda");
+const totalElemento = document.getElementById("total");
+const descontoElemento = document.getElementById("desconto");
+const totalFinalElemento = document.getElementById("total-final");
 
-// lista de encomenda
-const listaEncomenda = document.getElementById('lista-Encomenda');
-
-// elementos de exibição
-const totalElemento = document.getElementById('total');
-const descontoElemento = document.getElementById('desconto');
-const totalFinalElemento = document.getElementById('total-final');
-
-// variáveis
 let quantidade = 0;
 let desconto = 0;
+let totalSemDesconto = 0;
 
-// clique nos produtos
 botoesEscolher.forEach((botao) => {
-    botao.addEventListener("click", () => {
+  botao.addEventListener("click", () => {
+    const produto = botao.closest(".produto");
 
-        const produto = botao.parentElement;
+    if (!produto) {
+      console.error("Não encontrei .produto");
+      return;
+    }
 
-        const nome = produto.querySelector("h2").textContent;
+    const titulo = produto.querySelector("h2");
+    const precoSpan = produto.querySelector(".preco");
 
-        const preco = parseFloat(
-            produto.querySelector('.preco').textContent
-                .replace("R$", "")
-                .replace(",", ".")
-        );
+    if (!titulo || !precoSpan) {
+      console.error("Não encontrei h2 ou .preco");
+      return;
+    }
 
-        const itemEncomenda = document.createElement('li');
-        itemEncomenda.textContent = `${nome} - R$ ${preco.toFixed(2)}`;
-        listaEncomenda.appendChild(itemEncomenda);
+    const nomeProduto = titulo.textContent.trim();
+    const precoTexto = precoSpan.textContent
+      .replace("R$", "")
+      .replace(",", ".")
+      .trim();
 
-        // quantidade de itens
-        quantidade++;
+    const preco = parseFloat(precoTexto);
 
-        // total sem desconto
-        let totalSemDesconto = quantidade * 15;
+    if (isNaN(preco)) {
+      console.error("Preço inválido:", precoTexto);
+      return;
+    }
 
-        // desconto (a cada 2 itens ganha 5)
-        desconto = Math.floor(quantidade / 2) * 5;
+    const itemEncomenda = document.createElement("li");
+    itemEncomenda.textContent = `${nomeProduto} - R$ ${preco.toFixed(2).replace(".", ",")}`;
+    listaEncomenda.appendChild(itemEncomenda);
 
-        // total final
-        let totalFinal = totalSemDesconto - desconto;
+    quantidade++;
+    totalSemDesconto += preco;
 
-        // atualiza tela
-        totalElemento.textContent = `Total: R$ ${totalSemDesconto.toFixed(2)}`;
-        descontoElemento.textContent = `Desconto: R$ ${desconto.toFixed(2)}`;
-        totalFinalElemento.textContent = `Total com desconto: R$ ${totalFinal.toFixed(2)}`;
-    });
+    desconto = Math.floor(quantidade / 2) * 5;
+    const totalFinal = totalSemDesconto - desconto;
+
+    totalElemento.textContent = `Total: R$ ${totalSemDesconto.toFixed(2).replace(".", ",")}`;
+    descontoElemento.textContent = `Desconto: R$ ${desconto.toFixed(2).replace(".", ",")}`;
+    totalFinalElemento.textContent = `Total com desconto: R$ ${totalFinal.toFixed(2).replace(".", ",")}`;
+  });
 });
 
-// botão finalizar
-const botaoFinalizarEncomenda = document.getElementById("Finalizar-Encomenda");
+function FinalizarEncomenda() {
+  const itens = listaEncomenda.querySelectorAll("li");
 
-botaoFinalizarEncomenda.addEventListener("click", () => {
-    alert("Encomenda Finalizada!");
+  if (itens.length === 0) {
+    alert("Adicione pelo menos 1 item antes de finalizar.");
+    return;
+  }
+    alert("Encomenda finalizada com sucesso!");
 
-    listaEncomenda.innerHTML = "";
-    quantidade = 0;
-    desconto = 0;
+  listaEncomenda.innerHTML = "";
+  quantidade = 0;
+  desconto = 0;
+  totalSemDesconto = 0;
 
-    totalElemento.textContent = "Total: R$ 0,00";
-    descontoElemento.textContent = "Desconto: R$ 0,00";
-    totalFinalElemento.textContent = "Total com desconto: R$ 0,00";
-});             
+  totalElemento.textContent = "Total: R$ 0,00";
+  descontoElemento.textContent = "Desconto: R$ 0,00";
+  totalFinalElemento.textContent = "Total com desconto: R$ 0,00";
+};
+
+function irParaFinalizacao() {
+  const itens = listaEncomenda.querySelectorAll("li");
+
+  if (itens.length === 0) {
+    alert("Adicione pelo menos 1 item antes de finalizar.");
+    return;
+  }
+
+  const dadosPedido = {
+    itens: listaEncomenda.innerHTML,
+    total: totalElemento.textContent,
+    desconto: descontoElemento.textContent,
+    totalFinal: totalFinalElemento.textContent
+  };
+
+  localStorage.setItem("pedido", JSON.stringify(dadosPedido));
+
+  window.location.href = "Finalizar.html";
+}
